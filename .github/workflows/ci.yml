@@ -22,8 +22,8 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Instalar dependencias
-        run: npm install
+      - name: Limpiar e instalar dependencias
+        run: npm ci
 
       - name: Ejecutar pruebas unitarias
         run: npm test
