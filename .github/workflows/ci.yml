@@ -1,0 +1,32 @@
+name: CI - Pruebas Automáticas
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Limpiar e instalar dependencias
+        run: npm ci
+
+      - name: Verificar permisos de jest
+        run: chmod +x node_modules/.bin/jest
+
+      - name: Ejecutar pruebas unitarias
+        run: npm test
